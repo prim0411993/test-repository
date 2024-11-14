@@ -1,6 +1,11 @@
-name: Lint Code  
+name: Lint Code
+
+on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+
 jobs:
   lint:
     runs-on: ubuntu-latest  
@@ -12,4 +17,3 @@ jobs:
           node-version: '16'  
       - run: npm ci  
       - run: npm run lint  
- 
