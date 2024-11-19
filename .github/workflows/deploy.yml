@@ -31,4 +31,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Используем токен для авторизации
           publish_dir: ./public  # Публикуем содержимое из папки dist
-          publish_branch: main # Публикуем на ветке gh-pages
+          publish_branch: gh-pages # Публикуем на ветке gh-pages
