@@ -3,11 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Workflow будет запускаться при пуше в ветку main
+      - main  
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Для выполнения используется виртуальная машина с Ubuntu
+    runs-on: ubuntu-latest  
+
 
     steps:
       # Шаг 1: Клонирование репозитория
