@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Устанавливаем Node.js версии 14
+          node-version: '22'  # Устанавливаем Node.js версии 14
 
       # Шаг 3: Установка зависимостей
       - name: Install dependencies
