@@ -30,12 +30,12 @@ jobs:
           node-version: "lts/*"  # Использование последней стабильной версии Node.js
 
       # Шаг 3: Установка зависимостей
-      # - name: Install dependencies
-      #   run: npm install --legacy-peer-deps  # Установка зависимостей с учетом старых peer зависимостей
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps  # Установка зависимостей с учетом старых peer зависимостей
 
       # Шаг 4: Проверка уязвимостей
-      # - name: Verify the integrity of installed dependencies
-      #   run: npm audit --audit-level=high  # Проверка на уязвимости с уровнем серьезности "high"
+      - name: Verify the integrity of installed dependencies
+        run: npm audit --audit-level=high  # Проверка на уязвимости с уровнем серьезности "high"
 
       # Шаг 5: Запуск semantic-release
       - name: Run semantic-release
