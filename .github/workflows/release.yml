@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read  # Для чтения содержимого репозитория (для checkout)
+  issues: write    # Для комментирования релизов
+  pull-requests: write  # Для комментирования PR
+  contents: write  # Для публикации релиза
+  id-token: write  # Для использования OIDC с npm
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Для получения всей истории репозитория
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps  # Установить зависимости с учетом старых peer зависимостей
+
+      - name: Verify the integrity of installed dependencies
+        run: npm audit --audit-level=high  # Проверить уязвимости с уровнем серьезности "high"
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Переменная окружения для GitHub Token
+        run: npx semantic-release

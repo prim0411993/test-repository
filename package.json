@@ -41,6 +41,14 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
-    "eslint": "^8.50.0"
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.2",
+    "eslint": "^8.50.0",
+    "semantic-release": "^24.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prim0411993/test-repository.git"
   }
 }
