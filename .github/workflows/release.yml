@@ -3,38 +3,43 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - main  # Запускать workflow при пуше в ветку main
 
 permissions:
-  contents: read  # Для чтения содержимого репозитория (для checkout)
+  contents: read  # Для чтения содержимого репозитория
   issues: write    # Для комментирования релизов
-  pull-requests: write  # Для комментирования PR
+  pull-requests: write  # Для комментирования pull requests
   contents: write  # Для публикации релиза
   id-token: write  # Для использования OIDC с npm
 
 jobs:
   release:
-    name: Release
+    name: Create Release
     runs-on: ubuntu-latest
 
     steps:
+      # Шаг 1: Checkout кода
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Для получения всей истории репозитория
+          fetch-depth: 0  # Получаем полную историю репозитория
 
+      # Шаг 2: Установка Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: "lts/*"  # Использование последней стабильной версии Node.js
 
+      # Шаг 3: Установка зависимостей
       - name: Install dependencies
-        run: npm install --legacy-peer-deps  # Установить зависимости с учетом старых peer зависимостей
+        run: npm install --legacy-peer-deps  # Установка зависимостей с учетом старых peer зависимостей
 
+      # Шаг 4: Проверка уязвимостей
       - name: Verify the integrity of installed dependencies
-        run: npm audit --audit-level=high  # Проверить уязвимости с уровнем серьезности "high"
+        run: npm audit --audit-level=high  # Проверка на уязвимости с уровнем серьезности "high"
 
+      # Шаг 5: Запуск semantic-release
       - name: Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Переменная окружения для GitHub Token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Переменная окружения для использования GitHub Token
         run: npx semantic-release
