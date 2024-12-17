@@ -9,7 +9,6 @@ permissions:
   contents: read  # Для чтения содержимого репозитория
   issues: write    # Для комментирования релизов
   pull-requests: write  # Для комментирования pull requests
-  contents: write  # Для публикации релиза
   id-token: write  # Для использования OIDC с npm
 
 jobs:
